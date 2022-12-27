@@ -1,8 +1,17 @@
 import styled from "styled-components";
 
-export default function Form() {
+export default function Form({ onAddActivity, isChecked }) {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    onAddActivity(data);
+  }
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <StyledFieldset>
         <StyledLegend>Add new Activity:</StyledLegend>
         <label htmlFor="name">Name: </label>
@@ -13,7 +22,8 @@ export default function Form() {
           placeholder="Type your name here..."
         ></input>
         <label htmlFor="checkbox">Good-weather activity: </label>
-        <input type="checkbox" name="checkbox"></input>
+        <input type="checkbox" name="checkbox" onClick={isChecked}></input>
+        <button type="submit">Save</button>
       </StyledFieldset>
     </StyledForm>
   );
