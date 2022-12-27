@@ -11,6 +11,6 @@ export default function Header() {
 const StyledHeader = styled.header`
   background-color: darkgrey;
   width: 100vw;
-  position: fixed;
-  top: 0px;
+  /* position: fixed;
+  top: 0px; */
 `;
