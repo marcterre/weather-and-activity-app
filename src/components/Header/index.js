@@ -1,3 +1,7 @@
 export default function Header() {
-  return "";
+  return (
+    <header>
+      <h1>Weather & Activitys</h1>
+    </header>
+  );
 }

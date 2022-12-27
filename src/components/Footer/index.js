@@ -1,3 +1,7 @@
 export default function Footer() {
-  return "";
+  return (
+    <footer>
+      <p>Icons comming soon...</p>
+    </footer>
+  );
 }
