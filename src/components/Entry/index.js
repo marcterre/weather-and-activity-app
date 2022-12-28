@@ -1,12 +1,16 @@
-export default function Entry({ name, onDelete, isChecked }) {
+export default function Entry({ name, onDelete, isChecked, onToogleWeather }) {
   return (
     <section>
       <h2>{name}</h2>
-      <button>{isChecked ? "🌞" : "🌧️"}</button>
-      <button type="button" onClick={onDelete}>
-        {" "}
-        x{" "}
-      </button>
+      <div>
+        <button type="button" onClick={onToogleWeather}>
+          {isChecked ? "🌞" : "🌧️"}
+        </button>
+        <button type="button" onClick={onDelete}>
+          {" "}
+          x{" "}
+        </button>
+      </div>
     </section>
   );
 }

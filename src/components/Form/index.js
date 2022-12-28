@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Form({ onAddActivity, isChecked }) {
+export default function Form({ onAddActivity }) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -21,8 +21,8 @@ export default function Form({ onAddActivity, isChecked }) {
           name="name"
           placeholder="Type your name here..."
         ></input>
-        <label htmlFor="checkbox">Good-weather activity: </label>
-        <input type="checkbox" name="checkbox" onClick={isChecked}></input>
+        <label htmlFor="isChecked">Good-weather activity: </label>
+        <input type="checkbox" name="isChecked" id="isChecked"></input>
         <button type="submit">Save</button>
       </StyledFieldset>
     </StyledForm>

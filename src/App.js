@@ -1,7 +1,11 @@
+import React from "react";
+
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
 import EntrySection from "./components/EntrySection";
+// import Entry from "./components/Entry";
+
 import GlobalStyle from "./global.js";
 import { useState } from "react";
 
@@ -10,25 +14,45 @@ function App() {
   const [isChecked, SetIsChecked] = useState(false);
 
   function handleActivity(newEntries) {
-    SetEntries([...entries, [...newEntries]]);
+    SetEntries([...entries, { ...newEntries, id: crypto.randomUUID() }]);
   }
 
   function handleCheckedClick() {
     SetIsChecked(!isChecked);
   }
-  console.log(isChecked);
+
+  function handleDelete(id) {
+    console.log(id);
+  }
+
+  function handleToggleWeather(id) {
+    SetEntries((oldEntries) =>
+      oldEntries.map((entry) => {
+        if (entry.id !== id) {
+          return entry;
+        } else {
+          return {
+            ...entry,
+            isChecked: !entry.isChecked,
+          };
+        }
+      })
+    );
+  }
 
   return (
     <>
       <GlobalStyle />
-      <body>
-        <Header />
-        <main>
-          <EntrySection entries={entries} />
-          <Form onAddActivity={handleActivity} isChecked={handleCheckedClick} />
-        </main>
-        <Footer />
-      </body>
+      <Header />
+      <main>
+        <EntrySection
+          entries={entries}
+          onDelete={handleDelete}
+          handleToggleWeather={handleToggleWeather}
+        />
+        <Form onAddActivity={handleActivity} isChecked={handleCheckedClick} />
+      </main>
+      <Footer />
     </>
   );
 }
