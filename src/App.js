@@ -24,7 +24,7 @@ function App() {
       <body>
         <Header />
         <main>
-          <EntrySection />
+          <EntrySection entries={entries} />
           <Form onAddActivity={handleActivity} isChecked={handleCheckedClick} />
         </main>
         <Footer />
