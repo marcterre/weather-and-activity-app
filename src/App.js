@@ -14,7 +14,10 @@ function App() {
   const [isChecked, SetIsChecked] = useState(false);
 
   function handleActivity(newEntries) {
-    SetEntries([...entries, { ...newEntries, id: crypto.randomUUID() }]);
+    SetEntries((oldEntries) => [
+      ...oldEntries,
+      { ...newEntries, id: crypto.randomUUID() },
+    ]);
   }
 
   function handleCheckedClick() {
@@ -23,6 +26,7 @@ function App() {
 
   function handleDelete(id) {
     console.log(id);
+    SetEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
   }
 
   function handleToggleWeather(id) {
@@ -47,7 +51,7 @@ function App() {
       <main>
         <EntrySection
           entries={entries}
-          onDelete={handleDelete}
+          handleDelete={handleDelete}
           handleToggleWeather={handleToggleWeather}
         />
         <Form onAddActivity={handleActivity} isChecked={handleCheckedClick} />

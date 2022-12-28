@@ -2,7 +2,7 @@ import Entry from "../Entry";
 
 export default function EntrySection({
   entries,
-  onDelete,
+  handleDelete,
   handleToggleWeather,
 }) {
   return (
@@ -13,7 +13,7 @@ export default function EntrySection({
             <Entry
               name={entry.name}
               isChecked={entry.isChecked}
-              onDelete={onDelete}
+              onDelete={() => handleDelete(entry.id)}
               onToogleWeather={() => handleToggleWeather(entry.id)}
             ></Entry>
           </li>
