@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
 import EntrySection from "./components/EntrySection";
-// import Entry from "./components/Entry";
+import WeatherDisplay from "./components/WeatherDisplay";
 
 import GlobalStyle from "./global.js";
 import { useState } from "react";
@@ -44,6 +44,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <main>
+        <WeatherDisplay />
         <EntrySection
           entries={entries}
           handleDelete={handleDelete}
