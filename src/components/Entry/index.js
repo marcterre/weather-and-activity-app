@@ -3,12 +3,12 @@ export default function Entry({ name, onDelete, isChecked, onToogleWeather }) {
     <section>
       <h2>{name}</h2>
       <div>
-        <button
+        {/* <button
           type="button"
           // onClick={onToogleWeather}
         >
           {isChecked ? "🌞" : "🌧️"}
-        </button>
+        </button> */}
         <button type="button" onClick={onDelete}>
           {" "}
           x{" "}

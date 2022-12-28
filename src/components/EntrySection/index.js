@@ -15,22 +15,20 @@ export default function EntrySection({
     <>
       <StyledH2>
         {isGoodWeather
-          ? "Bad weather outside! Here is what you can do: "
-          : "The weather is awesome! Go outside and: "}
+          ? "The weather is awesome! Go outside and: "
+          : "Bad weather outside! Here is what you can do: "}
       </StyledH2>
       <ul>
-        {entries.map((entry) => {
-          return (
-            <li key={entry.id}>
-              <Entry
-                name={entry.name}
-                isChecked={entry.isChecked}
-                onDelete={() => handleDelete(entry.id)}
-                // onToogleWeather={() => handleToggleWeather(entry.id)}
-              ></Entry>
-            </li>
-          );
-        })}
+        {entries.map((entry) => (
+          <li key={entry.id}>
+            <Entry
+              name={entry.name}
+              // isChecked={entry.isChecked}
+              onDelete={() => handleDelete(entry.id)}
+              // onToogleWeather={() => handleToggleWeather(entry.id)}
+            ></Entry>
+          </li>
+        ))}
       </ul>
     </>
   );

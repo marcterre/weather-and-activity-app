@@ -8,6 +8,7 @@ import WeatherDisplay from "./components/WeatherDisplay";
 
 import GlobalStyle from "./global.js";
 import { useState, useEffect } from "react";
+import { useLocalStorageState } from "use-local-storage-state";
 
 const initialEntries = [
   { name: "Go walking", id: crypto.randomUUID(), isChecked: true },
@@ -15,8 +16,12 @@ const initialEntries = [
 ];
 
 function App() {
-  const [entries, SetEntries] = useState(initialEntries);
-  const [weather, setWeather] = useState({});
+  const [entries, SetEntries] = useLocalStorageState(initialEntries);
+  const [weather, setWeather] = useState({
+    temperature: "",
+    condition: "",
+    isGoodWeather: "",
+  });
   const url = "https://example-apis.vercel.app/api/weather/europe";
 
   useEffect(() => {
@@ -25,16 +30,20 @@ function App() {
         const response = await fetch(url);
         const getWeather = await response.json();
 
-        setWeather(getWeather);
+        setWeather({
+          temperature: getWeather.temperature,
+          condition: getWeather.condition,
+          isGoodWeather: getWeather.isGoodWeather,
+        });
       } catch (error) {
         console.log(error);
       }
     }
 
     fetchWeather();
-    const intervalId = setInterval(fetchWeather, 150000);
+    const intervalId = setInterval(fetchWeather, 5000);
     return () => clearInterval(intervalId);
-  });
+  }, []);
 
   function handleActivity(newEntries) {
     SetEntries((oldEntries) => [
@@ -47,7 +56,6 @@ function App() {
   }
 
   function handleDelete(id) {
-    console.log(id);
     SetEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
   }
 
