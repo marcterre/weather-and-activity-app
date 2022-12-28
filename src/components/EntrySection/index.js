@@ -1,24 +1,41 @@
 import Entry from "../Entry";
+import styled from "styled-components";
 
 export default function EntrySection({
   entries,
   handleDelete,
-  handleToggleWeather,
+  // handleToggleWeather,
+  isGoodWeather,
 }) {
+  const weatherActivitys = entries.filter(
+    (entry) => entry.isChecked === isGoodWeather
+  );
+
   return (
-    <ul>
-      {entries.map((entry) => {
-        return (
-          <li key={entry.id}>
-            <Entry
-              name={entry.name}
-              isChecked={entry.isChecked}
-              onDelete={() => handleDelete(entry.id)}
-              onToogleWeather={() => handleToggleWeather(entry.id)}
-            ></Entry>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <StyledH2>
+        {isGoodWeather
+          ? "Bad weather outside! Here is what you can do: "
+          : "The weather is awesome! Go outside and: "}
+      </StyledH2>
+      <ul>
+        {entries.map((entry) => {
+          return (
+            <li key={entry.id}>
+              <Entry
+                name={entry.name}
+                isChecked={entry.isChecked}
+                onDelete={() => handleDelete(entry.id)}
+                // onToogleWeather={() => handleToggleWeather(entry.id)}
+              ></Entry>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
+
+const StyledH2 = styled.h2`
+  font-size: 1em;
+`;
