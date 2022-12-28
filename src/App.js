@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 
 const initialEntries = [
   { name: "Go walking", id: crypto.randomUUID(), isChecked: true },
+  { name: "read a book", id: crypto.randomUUID(), isChecked: false },
 ];
 
 function App() {
@@ -29,18 +30,19 @@ function App() {
         console.log(error);
       }
     }
+
     fetchWeather();
-    const intervalId = setInterval(fetchWeather, 1000);
+    const intervalId = setInterval(fetchWeather, 150000);
     return () => clearInterval(intervalId);
   });
 
   function handleActivity(newEntries) {
     SetEntries((oldEntries) => [
-      ...oldEntries,
       {
         ...newEntries,
         id: crypto.randomUUID(),
       },
+      ...oldEntries,
     ]);
   }
 
@@ -70,13 +72,13 @@ function App() {
       <Header />
       <main>
         <WeatherDisplay weather={weather} />
+        <Form onAddActivity={handleActivity} />
         <EntrySection
           entries={entries}
           handleDelete={handleDelete}
           // handleToggleWeather={handleToggleWeather}
           isGoodWeather={weather.isGoodWeather}
         />
-        <Form onAddActivity={handleActivity} />
       </main>
       <Footer />
     </>
