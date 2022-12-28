@@ -11,17 +11,12 @@ import { useState } from "react";
 
 function App() {
   const [entries, SetEntries] = useState([]);
-  const [isChecked, SetIsChecked] = useState(false);
 
   function handleActivity(newEntries) {
     SetEntries((oldEntries) => [
       ...oldEntries,
       { ...newEntries, id: crypto.randomUUID() },
     ]);
-  }
-
-  function handleCheckedClick() {
-    SetIsChecked(!isChecked);
   }
 
   function handleDelete(id) {
@@ -54,7 +49,7 @@ function App() {
           handleDelete={handleDelete}
           handleToggleWeather={handleToggleWeather}
         />
-        <Form onAddActivity={handleActivity} isChecked={handleCheckedClick} />
+        <Form onAddActivity={handleActivity} />
       </main>
       <Footer />
     </>
