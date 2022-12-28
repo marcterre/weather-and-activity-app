@@ -1,21 +1,57 @@
+import React from "react";
+
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
-import Entry from "./components/Entry";
+import EntrySection from "./components/EntrySection";
+// import Entry from "./components/Entry";
+
 import GlobalStyle from "./global.js";
+import { useState } from "react";
 
 function App() {
+  const [entries, SetEntries] = useState([]);
+
+  function handleActivity(newEntries) {
+    SetEntries((oldEntries) => [
+      ...oldEntries,
+      { ...newEntries, id: crypto.randomUUID() },
+    ]);
+  }
+
+  function handleDelete(id) {
+    console.log(id);
+    SetEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
+  }
+
+  function handleToggleWeather(id) {
+    SetEntries((oldEntries) =>
+      oldEntries.map((entry) => {
+        if (entry.id !== id) {
+          return entry;
+        } else {
+          return {
+            ...entry,
+            isChecked: !entry.isChecked,
+          };
+        }
+      })
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
-      <body>
-        <Header />
-        <main>
-          <Entry />
-          <Form />
-        </main>
-        <Footer />
-      </body>
+      <Header />
+      <main>
+        <EntrySection
+          entries={entries}
+          handleDelete={handleDelete}
+          handleToggleWeather={handleToggleWeather}
+        />
+        <Form onAddActivity={handleActivity} />
+      </main>
+      <Footer />
     </>
   );
 }
