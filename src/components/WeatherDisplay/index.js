@@ -7,6 +7,7 @@ export default function WeatherDisplay() {
     location: "",
     temperature: "",
     condition: "",
+    isGoodWeather: "",
   });
 
   useEffect(() => {
@@ -14,16 +15,17 @@ export default function WeatherDisplay() {
       const response = await fetch(url);
       const getWeather = await response.json();
 
-      console.log(getWeather);
-
       setWeather({
         location: getWeather.location,
         temperature: getWeather.temperature,
         condition: getWeather.condition,
+        isGoodWeather: getWeather.isGoodWeather,
       });
     }
     fetchWeahter();
   }, []);
+
+  console.log(weather);
 
   return (
     <section>
