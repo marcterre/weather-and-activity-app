@@ -1,7 +1,23 @@
+import styled from "styled-components";
+
 export default function WeatherDisplay({ weather }) {
   return (
-    <h2>
-      {weather.temperature}°C{weather.condition}
-    </h2>
+    <Section>
+      <Div>{weather.condition}</Div>
+      <h2>{weather.temperature}°C</h2>
+    </Section>
   );
 }
+
+const Section = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 2.5em;
+  height: 20vh;
+  width: 100vw;
+`;
+
+const Div = styled.div`
+  font-size: 2em;
+`;

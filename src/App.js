@@ -39,7 +39,7 @@ function App() {
     }
 
     fetchWeather();
-    const intervalId = setInterval(fetchWeather, 150000);
+    const intervalId = setInterval(fetchWeather, 5000);
     return () => clearInterval(intervalId);
   }, []);
 
