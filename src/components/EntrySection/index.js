@@ -1,7 +1,12 @@
 import Entry from "../Entry";
 import styled from "styled-components";
 
-export default function EntrySection({ entries, handleDelete, isGoodWeather }) {
+export default function EntrySection({
+  entries,
+  handleDelete,
+  isGoodWeather,
+  onCompleted,
+}) {
   const weatherActivitys = entries.filter(
     (entry) => entry.isChecked === isGoodWeather
   );
@@ -20,6 +25,7 @@ export default function EntrySection({ entries, handleDelete, isGoodWeather }) {
               name={entry.name}
               isChecked={entry.isChecked}
               onDelete={() => handleDelete(entry.id)}
+              onCompleted={onCompleted}
             ></Entry>
           </li>
         ))}

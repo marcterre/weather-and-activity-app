@@ -39,7 +39,7 @@ function App() {
     }
 
     fetchWeather();
-    const intervalId = setInterval(fetchWeather, 15000);
+    const intervalId = setInterval(fetchWeather, 150000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -58,6 +58,10 @@ function App() {
     SetEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
   }
 
+  function handleCompleted() {
+    console.log("clicked");
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -69,6 +73,7 @@ function App() {
           entries={entries}
           handleDelete={handleDelete}
           isGoodWeather={weather.isGoodWeather}
+          onCompleted={handleCompleted}
         />
       </main>
       <Footer />
