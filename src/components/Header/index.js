@@ -9,8 +9,12 @@ export default function Header() {
 }
 
 const StyledHeader = styled.header`
-  background-color: darkgrey;
+  background-color: #30753b;
   width: 100vw;
-  /* position: fixed;
-  top: 0px; */
+  height: 8vh;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
