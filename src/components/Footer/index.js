@@ -13,7 +13,7 @@ const StyledFooter = styled.footer`
   position: fixed;
   bottom: 0px;
   width: 100vw;
-  height: 8vh;
+  height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
