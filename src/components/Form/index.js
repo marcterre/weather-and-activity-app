@@ -52,7 +52,7 @@ const Button = styled.button`
   border: 1px solid black;
   border-radius: 15px;
   &:hover {
-    transition: all 0.5s 0s linear;
+    background-color: grey;
   }
 `;
 
