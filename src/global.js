@@ -10,4 +10,7 @@ export default createGlobalStyle`
 body{
     display: grid;
     gap: 20px;
+    position: relative;
+    bottom: 5vh;
+    top: 5vh;
 }`;

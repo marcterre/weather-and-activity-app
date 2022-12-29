@@ -42,6 +42,11 @@ const StyledForm = styled.form`
   justify-content: flex-start;
   width: 100vw;
   font-size: 1.2em;
+  &:hover {
+    .button {
+      background-color: grey;
+    }
+  }
 `;
 
 const Button = styled.button`
@@ -49,7 +54,7 @@ const Button = styled.button`
   width: 100px;
   font-size: 1em;
   background-color: #f8b859;
-  border: 1px solid black;
+  border: none;
   border-radius: 15px;
   &:hover {
     background-color: grey;

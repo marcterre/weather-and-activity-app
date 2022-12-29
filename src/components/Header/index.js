@@ -9,6 +9,8 @@ export default function Header() {
 }
 
 const StyledHeader = styled.header`
+  position: fixed;
+  top: 0;
   background-color: #30753b;
   width: 100vw;
   height: 5vh;

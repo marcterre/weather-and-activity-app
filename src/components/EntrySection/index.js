@@ -43,13 +43,14 @@ const StyledH2 = styled.h2`
 const List = styled.ul`
   display: grid;
   gap: 10px;
+  padding: 10px 0px 50px;
 `;
 
 const ListItem = styled.li`
   margin: 0px 2vw;
   padding: 10px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   width: 96vw;

@@ -9,9 +9,9 @@ export default function Footer() {
 }
 
 const StyledFooter = styled.footer`
-  background-color: #30753b;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  background-color: #30753b;
   width: 100vw;
   height: 5vh;
   display: flex;
