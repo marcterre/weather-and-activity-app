@@ -14,6 +14,8 @@ const Section = styled.section`
   justify-content: space-evenly;
   align-items: center;
   font-size: 2.5em;
+  height: 20vh;
+  width: 100vw;
 `;
 
 const Div = styled.div`

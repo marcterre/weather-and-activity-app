@@ -9,7 +9,6 @@ import WeatherDisplay from "./components/WeatherDisplay";
 import GlobalStyle from "./global.js";
 import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
-import styled from "styled-components";
 
 // const initialEntries = [
 //   { name: "Go walking", id: crypto.randomUUID(), isChecked: true },

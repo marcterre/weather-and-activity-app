@@ -15,34 +15,47 @@ export default function Form({ onAddActivity }) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <StyledFieldset>
-        <StyledLegend>Add new Activity:</StyledLegend>
-        <label htmlFor="name">Name: </label>
-        <input
+      <h2>Add new Activity:</h2>
+      <label htmlFor="name">
+        Name:{" "}
+        <InputName
           id="name"
           type="text"
           name="name"
           placeholder="Type your name here..."
-        ></input>
-        <label htmlFor="isChecked">Good-weather activity: </label>
+        ></InputName>
+      </label>
+      <label htmlFor="isChecked">
+        Good-weather activity:{" "}
         <input type="checkbox" name="isChecked" id="isChecked"></input>
-        <button type="submit">Save</button>
-      </StyledFieldset>
+      </label>
+      <Button type="submit">Save</Button>
     </StyledForm>
   );
 }
 
 const StyledForm = styled.form`
-  border: 1px solid black;
-`;
-
-const StyledFieldset = styled.fieldset`
+  padding: 10px;
+  border: none;
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(2, 1fr);
   justify-content: flex-start;
+  width: 100vw;
+  font-size: 1.2em;
 `;
 
-const StyledLegend = styled.legend`
-  font-size: 1.5em;
+const Button = styled.button`
+  padding: 2px;
+  width: 100px;
+  font-size: 1em;
+  background-color: #f8b859;
+  border: 1px solid black;
+  border-radius: 15px;
+  &:hover {
+    transition: all 0.5s 0s linear;
+  }
+`;
+
+const InputName = styled.input`
+  width: 250px;
 `;
