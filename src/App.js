@@ -5,6 +5,7 @@ import Form from "./components/Form";
 import Footer from "./components/Footer";
 import EntrySection from "./components/EntrySection";
 import WeatherDisplay from "./components/WeatherDisplay";
+import ActivityCompleted from "./components/ActivitysCompleted";
 
 import GlobalStyle from "./global.js";
 import { useState, useEffect } from "react";
@@ -21,6 +22,7 @@ function App() {
     defaultValue: "",
   });
   const [weather, setWeather] = useState("");
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const url = "https://example-apis.vercel.app/api/weather/europe";
 
@@ -39,7 +41,7 @@ function App() {
     }
 
     fetchWeather();
-    const intervalId = setInterval(fetchWeather, 150000);
+    const intervalId = setInterval(fetchWeather, 50000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -58,8 +60,9 @@ function App() {
     SetEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
   }
 
-  function handleCompleted() {
-    console.log("clicked");
+  function handleCompleted(completedEntry) {
+    setIsCompleted(!isCompleted);
+    console.log(isCompleted);
   }
 
   return (
@@ -75,6 +78,7 @@ function App() {
           isGoodWeather={weather.isGoodWeather}
           onCompleted={handleCompleted}
         />
+        <ActivityCompleted entries={entries} />
       </main>
       <Footer />
     </>
