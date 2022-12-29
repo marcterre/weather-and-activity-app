@@ -8,20 +8,20 @@ import WeatherDisplay from "./components/WeatherDisplay";
 
 import GlobalStyle from "./global.js";
 import { useState, useEffect } from "react";
-import { useLocalStorageState } from "use-local-storage-state";
+import useLocalStorageState from "use-local-storage-state";
 
-const initialEntries = [
-  { name: "Go walking", id: crypto.randomUUID(), isChecked: true },
-  { name: "read a book", id: crypto.randomUUID(), isChecked: false },
-];
+// const initialEntries = [
+//   { name: "Go walking", id: crypto.randomUUID(), isChecked: true },
+//   { name: "read a book", id: crypto.randomUUID(), isChecked: false },
+//   { name: "riding bike", id: crypto.randomUUID(), isChecked: true },
+// ];
 
 function App() {
-  const [entries, SetEntries] = useLocalStorageState(initialEntries);
-  const [weather, setWeather] = useState({
-    temperature: "",
-    condition: "",
-    isGoodWeather: "",
+  const [entries, SetEntries] = useLocalStorageState("entries", {
+    defaultValue: "",
   });
+  const [weather, setWeather] = useState("");
+
   const url = "https://example-apis.vercel.app/api/weather/europe";
 
   useEffect(() => {
@@ -30,26 +30,25 @@ function App() {
         const response = await fetch(url);
         const getWeather = await response.json();
 
-        setWeather({
-          temperature: getWeather.temperature,
-          condition: getWeather.condition,
-          isGoodWeather: getWeather.isGoodWeather,
-        });
+        console.log(getWeather);
+
+        setWeather(getWeather);
       } catch (error) {
         console.log(error);
       }
     }
 
     fetchWeather();
-    const intervalId = setInterval(fetchWeather, 5000);
+    const intervalId = setInterval(fetchWeather, 15000);
     return () => clearInterval(intervalId);
   }, []);
 
-  function handleActivity(newEntries) {
+  function addActivity(newEntry) {
     SetEntries((oldEntries) => [
       {
-        ...newEntries,
+        ...newEntry,
         id: crypto.randomUUID(),
+        isChecked: newEntry.isChecked ? true : false,
       },
       ...oldEntries,
     ]);
@@ -59,32 +58,16 @@ function App() {
     SetEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
   }
 
-  // function handleToggleWeather(id) {
-  //   SetEntries((oldEntries) =>
-  //     oldEntries.map((entry) => {
-  //       if (entry.id !== id) {
-  //         return entry;
-  //       } else {
-  //         return {
-  //           ...entry,
-  //           isChecked: !entry.isChecked,
-  //         };
-  //       }
-  //     })
-  //   );
-  // }
-
   return (
     <>
       <GlobalStyle />
       <Header />
       <main>
         <WeatherDisplay weather={weather} />
-        <Form onAddActivity={handleActivity} />
+        <Form onAddActivity={addActivity} />
         <EntrySection
           entries={entries}
           handleDelete={handleDelete}
-          // handleToggleWeather={handleToggleWeather}
           isGoodWeather={weather.isGoodWeather}
         />
       </main>

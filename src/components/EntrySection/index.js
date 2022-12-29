@@ -1,12 +1,7 @@
 import Entry from "../Entry";
 import styled from "styled-components";
 
-export default function EntrySection({
-  entries,
-  handleDelete,
-  // handleToggleWeather,
-  isGoodWeather,
-}) {
+export default function EntrySection({ entries, handleDelete, isGoodWeather }) {
   const weatherActivitys = entries.filter(
     (entry) => entry.isChecked === isGoodWeather
   );
@@ -19,13 +14,12 @@ export default function EntrySection({
           : "Bad weather outside! Here is what you can do: "}
       </StyledH2>
       <ul>
-        {entries.map((entry) => (
+        {weatherActivitys.map((entry) => (
           <li key={entry.id}>
             <Entry
               name={entry.name}
-              // isChecked={entry.isChecked}
+              isChecked={entry.isChecked}
               onDelete={() => handleDelete(entry.id)}
-              // onToogleWeather={() => handleToggleWeather(entry.id)}
             ></Entry>
           </li>
         ))}

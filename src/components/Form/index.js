@@ -8,6 +8,9 @@ export default function Form({ onAddActivity }) {
     const data = Object.fromEntries(formData);
 
     onAddActivity(data);
+
+    event.target.reset();
+    event.target.name.focus();
   }
 
   return (
