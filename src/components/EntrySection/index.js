@@ -18,7 +18,7 @@ export default function EntrySection({
           ? "The weather is awesome! Go outside and: "
           : "Bad weather outside! Here is what you can do: "}
       </StyledH2>
-      <List>
+      {/* <List>
         {entries.map((entry) => (
           <ListItem key={entry.id}>
             <Entry
@@ -29,7 +29,7 @@ export default function EntrySection({
             ></Entry>
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </>
   );
 }
