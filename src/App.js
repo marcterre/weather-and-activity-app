@@ -17,9 +17,10 @@ import useLocalStorageState from "use-local-storage-state";
 // ];
 
 function App() {
-  const [entries, SetEntries] = useLocalStorageState("entries", {
-    defaultValue: "",
+  const [entries, setEntries] = useLocalStorageState("entries", {
+    defaultValue: [{}],
   });
+
   const [weather, setWeather] = useState("");
 
   const url = "https://example-apis.vercel.app/api/weather/europe";
@@ -44,7 +45,7 @@ function App() {
   }, []);
 
   function addActivity(newEntry) {
-    SetEntries((oldEntries) => [
+    setEntries((oldEntries) => [
       {
         ...newEntry,
         id: crypto.randomUUID(),
@@ -55,7 +56,7 @@ function App() {
   }
 
   function handleDelete(id) {
-    SetEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
+    setEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
   }
 
   function handleCompleted() {

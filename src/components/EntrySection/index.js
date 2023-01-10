@@ -7,9 +7,9 @@ export default function EntrySection({
   isGoodWeather,
   onCompleted,
 }) {
-  // const weatherActivitys = entries.filter(
-  //   (entry) => entry.isChecked === isGoodWeather
-  // );
+  const weatherActivitys = entries.filter(
+    (entry) => entry.isChecked === isGoodWeather
+  );
 
   return (
     <>
@@ -18,9 +18,9 @@ export default function EntrySection({
           ? "The weather is awesome! Go outside and: "
           : "Bad weather outside! Here is what you can do: "}
       </StyledH2>
-      {/* <List>
-        {entries.map((entry) => (
-          <ListItem key={entry.id}>
+      <List>
+        {weatherActivitys.map((entry) => (
+          <ListItem key={crypto.randomUUID()}>
             <Entry
               name={entry.name}
               isChecked={entry.isChecked}
@@ -29,7 +29,7 @@ export default function EntrySection({
             ></Entry>
           </ListItem>
         ))}
-      </List> */}
+      </List>
     </>
   );
 }
